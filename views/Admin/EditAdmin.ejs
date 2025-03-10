@@ -1,0 +1,111 @@
+<%- include('../Layout/Header.ejs') %>
+
+    <div class="content-wrapper">
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-12">
+                        <h1 class="m-0">Add Admin</h1>
+                    </div>
+                    <div class="col-sm-12">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item active">Add Admin</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">Add Admin</h3>
+                            </div>
+                            <form method="post" action="/EditAdmin" enctype="multipart/form-data">
+                              <input type="hidden" value="<%= singleAdmin.id %>" name="id">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">First Name</label>
+                                        <input type="text" class="form-control" id="exampleInputEmail1"
+                                            placeholder="Enter First Name" name="name" value="<%= singleAdmin.name %>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Email address</label>
+                                        <input type="email" class="form-control" id="exampleInputEmail1"
+                                            placeholder="Enter email" name="email" value="<%= singleAdmin.email %>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Password</label>
+                                        <input type="password" class="form-control" id="exampleInputPassword1"
+                                            placeholder="Password" name="password" value="<%= singleAdmin.password %>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Hobby</label>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" name="hobby"
+                                                      value="Sliping" <% if(singleAdmin.hobby.includes('Sliping')){%><%= 'checked' %><%} %>>
+                                                    <label class="form-check-label">Sliping</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" name="hobby"
+                                                        value="Spoat"<% if(singleAdmin.hobby.includes('Sport')){%><%= 'checked' %><%} %>>
+                                                    <label class="form-check-label">Spoat</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" name="hobby"
+                                                        value="Riding" <% if(singleAdmin.hobby.includes('Riding')){%><%= 'checked' %><%} %>>
+                                                    <label class="form-check-label">Riding</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Gender</label>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="gender"
+                                                        value="Male" <% if(singleAdmin.gender == 'Male'){%><%= 'checked' %><%} %>>
+                                                    <label class="form-check-label">Male</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="gender"
+                                                        value="Female" <% if(singleAdmin.gender == 'Female'){%><%= 'checked' %><%} %>>
+                                                    <label class="form-check-label">Female</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="exampleInputFile">File input</label>
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <label class="custom-file-label" for="exampleInputFile">Choose
+                                                    file</label>
+                                                <input type="file" class="custom-file-input" name="image"
+                                                    id="exampleInputFile">
+                                            </div>
+                                          </div>
+                                          <img src="<%= singleAdmin.image %>" alt="">
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+    <%- include('../Layout/Footer.ejs') %>

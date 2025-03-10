@@ -1,0 +1,49 @@
+<%- include('../Layout/Header.ejs') %>
+
+    <div class="content-wrapper">
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-12">
+                        <h1 class="m-0">Add SubCategory</h1>
+                    </div>
+                    <div class="col-sm-12">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item active">Add SubCategory</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">Add SubCategory</h3>
+                            </div>
+                            <form method="post" action="/category/subcategory/EditSubCategory">
+                                <input type="hidden" value="<%= singleSubCategory.id %>" name="id">
+                                <div class="card-body">
+                                      
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Sub category</label>
+                                        <input type="text" class="form-control" id="exampleInputEmail1"
+                                            placeholder="Enter First Name" name="subcategory" value="<%= singleSubCategory.subcategory %>">
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+    <%- include('../Layout/Footer.ejs') %>

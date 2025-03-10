@@ -1,0 +1,160 @@
+<%- include('../Layout/Header.ejs') %>
+
+    <div class="content-wrapper">
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-12">
+                        <h1 class="m-0">Products</h1>
+                    </div>
+                    <div class="col-sm-12">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="/product">Home</a></li>
+                            <li class="breadcrumb-item active">Add Products</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">Add Products</h3>
+                            </div>
+                            <form method="post" action="/products/Insertproducts">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 col-form-label">Category</label>
+                                        <div class="col-md-12">
+                                            <select class="form-select form-control" name="categoryId" id="categoryId">
+                                                <option value="">--Select Category--</option>
+                                                <% CategoryList.map((v,i)=>{ %>
+                                                    <option value="<%= v.id %>">
+                                                        <%= v.category %>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 col-form-label">Sub Category</label>
+                                        <div class="col-md-12">
+                                            <select class="form-select form-control" name="subcategoryId"
+                                                id="subCatgroryId">
+                                                <option value="">--Select Sub Category--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 col-form-label">Extra Category</label>
+                                        <div class="col-md-12">
+                                            <select class="form-select form-control" name="extracategoryId"
+                                                id="extracategoryId">
+                                                <option value="">--Select Extra Category--</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Type</label>
+                                        <select class="form-select form-control" name="typeId" id="typeId">
+                                            <option value="">--Select Type--</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Brand</label>
+                                        <input type="text" class="form-control" id="exampleInputEmail1"
+                                            placeholder="Enter the Brand" name="brand">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Title</label>
+                                        <input type="text" class="form-control" id="exampleInputEmail1"
+                                            placeholder="Enter the Title" name="title">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Price</label>
+                                        <input type="number" class="form-control" id="exampleInputEmail1"
+                                            placeholder="Enter the Price" name="price">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Discount</label>
+                                        <input type="number" class="form-control" id="exampleInputEmail1"
+                                            placeholder="Enter the Discount" name="discount">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Descreption</label>
+                                        <textarea name="descreption" placeholder="Enter the Descreption"
+                                            class="form-control"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputFile">Products Image</label>
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <label class="custom-file-label" for="exampleInputFile">Choose
+                                                    file</label>
+                                                <input type="file" class="custom-file-input" name="image"
+                                                    id="exampleInputFile">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+    <%- include('../Layout/Footer.ejs') %>
+        <script>
+            document.querySelector('#categoryId').addEventListener('change', (e) => {
+                let ihtml = '<option value="">--Select Category--</option>';
+                let allSubCat = JSON.parse(`<%- JSON.stringify(SubCategoryList) %>`);
+                console.log(allSubCat)
+                allSubCat.map((item) => {
+                    if (item.categoryId == e.target.value) {
+                        ihtml += `<option value="${item._id}">
+                    ${item.subcategory}
+                </option>`
+                    }
+                })
+
+                document.querySelector('#subCatgroryId').innerHTML = ihtml;
+            })
+
+
+            document.querySelector('#subCatgroryId').addEventListener('change', (e) => {
+                let ihtml = '<option value="">--Select Extra Category--</option>';
+                let allExtraCat = JSON.parse(`<%- JSON.stringify(ExtraCategoryList) %>`);
+                console.log(allExtraCat)
+                allExtraCat.map((item) => {
+                    if (item.subcategoryId == e.target.value) {
+                        ihtml += `<option value="${item._id}">
+                    ${item.extracategory}
+                </option>`
+                    }
+                })
+                document.querySelector('#extracategoryId').innerHTML = ihtml;
+            })
+
+            document.querySelector('#typeId').addEventListener('change', (e) => {
+                let ihtml = '<option value="">--Select Type--</option>';
+                let allTypeList = JSON.parse(`<%- JSON.stringify(TypeList) %>`);
+                console.log(allTypeList)
+                allTypeList.map((item) => {
+                    if (item.typeId == e.target.value) {
+                        ihtml += `<option value="${item._id}">
+                    ${item.extracategory}
+                </option>`
+                    }
+                })
+                document.querySelector('#typeId').innerHTML = ihtml;
+            })
+        </script>

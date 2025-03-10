@@ -1,0 +1,60 @@
+<%- include('../Layout/Header.ejs') %>
+
+    <div class="content-wrapper">
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-12">
+                        <h1 class="m-0">SubCategory</h1>
+                    </div>
+                    <div class="col-sm-12">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item active">Add SubCategory</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">SubCategory</h3>
+                            </div>
+                            <form method="post" action="/category/SubCategory/InsertSubCategory">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-2 col-form-label">Category</label>
+                                        <div class="col-md-12">
+                                            <select class="form-select form-control" name="categoryId">
+                                                <option value="">--Select Category--</option>
+                                                <% CategoryList.map((v,i)=>{ %>
+                                                    <option value="<%= v.id %>">
+                                                        <%= v.category %>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">SubCategory</label>
+                                        <input type="text" class="form-control" id="exampleInputEmail1"
+                                            placeholder="Enter the category" name="subcategory">
+                                    </div>
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+    <%- include('../Layout/Footer.ejs') %>

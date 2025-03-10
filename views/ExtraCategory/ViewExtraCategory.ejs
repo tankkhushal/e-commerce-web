@@ -1,0 +1,81 @@
+<%- include('../Layout/Header.ejs') %>
+
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-12">
+                    <h1 class="m-0">Category Data</h1>
+                </div>
+                <div class="col-sm-12">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item active">Category Data</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Table Section -->
+                    <div class="card shadow-lg border-light rounded">
+                        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                            <h5 class="m-0">Category Data</h5>
+                            <!-- Add Category Button -->
+                            <a href="/category/subcategory/extracategory" class="btn btn-dark text-primary btn-sm d-flex align-items-center">
+                                <i class="ri-add-circle-line mr-1"></i> Add New Category
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-striped table-hover table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>Category</th>
+                                        <th>Sub Category</th>
+                                        <th>Extra Category</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% extraCategoryData.map((v, i) => { %>
+                                    <tr>
+                                        <td><%= i + 1 %></td>
+                                        <td><%= v.categoryId.category %></td>
+                                        <td><%= v.subcategoryId.subcategory %></td>
+                                        <td><%= v.extracategory %></td>
+                                        <td>
+                                            <% if(v.status){%>
+                                            <a href="/category/subcategory/extracategory/changeStatus/?catId=<%= v.id %>&status=true" class="btn btn-success">Active</a>
+                                            <% } else { %>                                            
+                                                <a class="btn btn-danger" href="/category/subcategory/extracategory/changeStatusTrue/?catId=<%= v.id %>&status=false">Deactive</a>
+                                            <% } %>
+                                        </td>
+                                        <td class="d-flex justify-content-center">
+                                            <!-- Delete Button with Tooltip -->
+                                            <a href="/category/subcategory/extracategory/DeleteExtraCategory/?id=<%= v.id %>" class="text-danger text-decoration-none" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                <i class="ri-delete-bin-6-line h4" style="margin-right: 15px;"></i>
+                                            </a>
+                                            <!-- Edit Button with Tooltip -->
+                                            <a href="/category/subcategory/extracategory/UpdateExtraCategory/<%= v.id %>" class="text-warning text-decoration-none" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                <i class="ri-edit-2-fill h4"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<%- include('../Layout/Footer.ejs') %>

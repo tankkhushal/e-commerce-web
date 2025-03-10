@@ -1,0 +1,109 @@
+<%- include('../Layout/Header.ejs') %>
+
+  <div class="content-wrapper">
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-12">
+            <h1 class="m-0">Add Admin</h1>
+          </div>
+          <div class="col-sm-12">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item active">User Data</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <!-- Table Section -->
+            <div class="card shadow-sm">
+              <div class="card-header bg-primary text-white">
+                <h5 class="m-0">User Data</h5>
+              </div>
+              <div class="card-body">
+                <div class="d-flex w-50">
+                  <form class="d-flex w-100">
+                    <input type="search" value="<%= search %>" name="search" class="form-control"
+                      placeholder="Search Here.." style="margin:0 10px 0 0  ;">
+                    <button type="submit" class="btn btn-primary" style="margin:0 10px 0 0;">Search</button>
+                  </form>
+                  <a href="/viewAdmin" class="ms-2">
+                    <button class="btn btn-secondary">Reset</button>
+                  </a>
+                </div>
+                <table class="table table-striped table-hover">
+                  <thead>
+                    <tr>
+                      <th>No.</th>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Gender</th>
+                      <th>Hobby</th>
+                      <th>City</th>
+                      <th>Image</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% AdminData.map((v, i)=> { %>
+                      <tr>
+                        <td>
+                          <%= i + 1 %>
+                        </td>
+                        <td>
+                          <%= v.name %>
+                        </td>
+                        <td>
+                          <%= v.email %>
+                        </td>
+                        <td>
+                          <%= v.gender %>
+                        </td>
+                        <td>
+                          <%= v.hobby %>
+                        </td>
+                        <td>
+                          <%= v.city %>
+                        </td>
+                        <td>
+                          <img src="<%= v.image %>" class="img-fluid" style="max-height: 100px;" alt="User Image" />
+                        </td>
+                        <td class="d-flex justify-content-center">
+                          <a href="/deleteData/?id=<%= v.id %>" class="text-danger text-decoration-none"
+                            data-toggle="tooltip" data-placement="top" title="Delete">
+                            <i class="ri-delete-bin-6-line h4" style="margin-right: 10px;"></i>
+                          </a>
+                          <a href="/update/<%= v.id %>" class="text-warning text-decoration-none" data-toggle="tooltip"
+                            data-placement="top" title="Edit"><i class="ri-edit-2-fill h4"></i></a>
+                        </td>
+                      </tr>
+                      <% }) %>
+
+                  </tbody>
+                </table>
+                <div class="d-flex justify-content-between mt-4">
+                  <a href="/viewAdmin/?page=<%= parseInt(page) - 1 %>&search=<%= search %>" class="btn btn-primary">Prev</a>
+                  <div>
+                      <% for(i=0;i<=page;i++){ %>
+                          <a href="/viewAdmin/?page=<%= i %>&search=<%= search %>" class="btn btn-outline-primary mx-1">
+                              <%= i %>
+                          </a>
+                          <% } %>
+                  </div>
+                  <a href="/viewAdmin/?page=<%= parseInt(page) + 1 %>&search=<%= search %>" class="btn btn-primary">Next</a>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+  <%- include('../Layout/Footer.ejs') %>
