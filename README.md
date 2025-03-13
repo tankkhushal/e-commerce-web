@@ -10,7 +10,7 @@ view category page
 view subcategory page
 ![e4](https://github.com/user-attachments/assets/d034c2b4-ccfc-47da-9f33-3485880e4223)
 
-type page
+type on page
 ![e5](https://github.com/user-attachments/assets/3d4b70ca-6488-41af-92ca-502b2fdd089d)
 
 product page
